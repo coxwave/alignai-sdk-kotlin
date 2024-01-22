@@ -1,6 +1,6 @@
-package ai.tryalign.alignsdkkotlin.events
+package com.github.coxwave.alignsdkkotlin.events
 
-import ai.tryalign.alignsdkkotlin.Constants
+import com.github.coxwave.alignsdkkotlin.Constants
 import build.buf.gen.ingestion.v1alpha.Event
 import build.buf.gen.ingestion.v1alpha.EventProperties
 

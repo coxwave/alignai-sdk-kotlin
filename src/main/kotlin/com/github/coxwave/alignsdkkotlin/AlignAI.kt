@@ -1,6 +1,6 @@
-package ai.tryalign.alignsdkkotlin
+package com.github.coxwave.alignsdkkotlin
 
-import ai.tryalign.alignsdkkotlin.events.BaseEvent
+import com.github.coxwave.alignsdkkotlin.events.BaseEvent
 import build.buf.gen.ingestion.v1alpha.CollectEventsRequest
 import build.buf.gen.ingestion.v1alpha.IngestionServiceClient
 import com.connectrpc.ProtocolClientConfig

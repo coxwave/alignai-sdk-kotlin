@@ -1,4 +1,4 @@
-package ai.tryalign.alignsdkkotlin.events
+package com.github.coxwave.alignsdkkotlin.events
 
 import build.buf.gen.ingestion.v1alpha.Event
 import com.google.protobuf.util.Timestamps

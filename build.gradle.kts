@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-group = "ai.tryalign"
+group = "com.github.coxwave"
 version = "0.1.1"
 
 repositories {
@@ -34,19 +34,11 @@ kotlin {
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/coxwave/alignai-sdk-kotlin")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-            }
-        }
-    }
     publications {
-        register<MavenPublication>("gpr") {
-            from(components["kotlin"])
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            groupId = "com.github.coxwave"
+            artifactId = "alignai-sdk-kotlin"
         }
     }
 }

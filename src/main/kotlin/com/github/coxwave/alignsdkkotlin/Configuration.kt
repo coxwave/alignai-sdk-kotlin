@@ -1,4 +1,4 @@
-package ai.tryalign.alignsdkkotlin
+package com.github.coxwave.alignsdkkotlin
 
 class Configuration (
     val projectId: String,

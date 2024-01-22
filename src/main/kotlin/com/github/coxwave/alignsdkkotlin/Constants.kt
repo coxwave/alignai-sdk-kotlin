@@ -1,4 +1,4 @@
-package ai.tryalign.alignsdkkotlin
+package com.github.coxwave.alignsdkkotlin
 
 object Constants {
     const val DEFAULT_API_HOST = "https://api.impaction.ai"
