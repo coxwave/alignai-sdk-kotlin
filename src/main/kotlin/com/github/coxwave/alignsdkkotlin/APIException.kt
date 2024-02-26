@@ -1,3 +1,5 @@
 package com.github.coxwave.alignsdkkotlin
 
-class APIException(cause: Throwable?) : Exception(cause)
+import com.connectrpc.ConnectException
+
+class APIException(cause: ConnectException) : Exception("${cause.code}: ${cause.message}")
