@@ -45,6 +45,6 @@ class AlignAI(
 
         // Error handling
         val cause = response.failure{ error -> error.cause }
-        throw APIException(cause)
+        throw APIException(cause!!)
     }
 }
