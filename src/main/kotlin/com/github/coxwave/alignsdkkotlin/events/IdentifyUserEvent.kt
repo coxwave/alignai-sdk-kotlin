@@ -16,6 +16,14 @@ class IdentifyUserEvent(
 ): BaseEvent() {
     override var eventType = Constants.EVENT_IDENTIFY_USER
 
+    init {
+        require(userId.isNotBlank()) { "userId is required" }
+        require(userId.length <= 64) { "userId must be at most 64 characters" }
+        require(userDisplayName == null || userDisplayName.length <= 64) { "userDisplayName must be at most 64 characters" }
+        require(userEmail == null || userEmail.length <= 256) { "userEmail must be at most 256 characters" }
+        require(userCountryCode == null || userCountryCode.length == 2) { "userCountryCode must be ISO Alpha-2 code." }
+    }
+
     override fun asProtoEventBuilder(): Event.Builder {
         val propsBuilder = EventProperties.UserProperties.newBuilder().setUserId(userId)
         if (userDisplayName != null) {

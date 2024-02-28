@@ -17,6 +17,13 @@ class CreateMessageEvent(
 ) : BaseEvent() {
     override var eventType = Constants.EVENT_CREATE_MESSAGE
 
+    init {
+        require(sessionId.isNotBlank()) { "sessionId is required" }
+        require(sessionId.length <= 64) { "sessionId must be at most 64 characters" }
+        require(messageIndex > 0u) { "messageIndex must be greater than 0" }
+        require(content.isNotBlank()) { "content is required" }
+    }
+
     override fun asProtoEventBuilder(): Event.Builder {
         val propsBuilder = EventProperties.MessageProperties.newBuilder()
             .setSessionId(sessionId)

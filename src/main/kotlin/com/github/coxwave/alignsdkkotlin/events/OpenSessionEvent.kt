@@ -11,6 +11,15 @@ class OpenSessionEvent(
 ) : BaseEvent() {
     override var eventType = Constants.EVENT_OPEN_SESSION
 
+    init {
+        require(sessionId.isNotBlank()) { "sessionId is required" }
+        require(sessionId.length <= 64) { "sessionId must be at most 64 characters" }
+        require(userId.isNotBlank()) { "userId is required" }
+        require(userId.length <= 64) { "userId must be at most 64 characters" }
+        require(assistantId.isNotBlank()) { "assistantId is required" }
+        require(assistantId.length <= 64) { "assistantId must be at most 64 characters" }
+    }
+
     override fun asProtoEventBuilder(): Event.Builder {
         val propsBuilder = EventProperties.SessionProperties.newBuilder()
             .setSessionId(sessionId)
