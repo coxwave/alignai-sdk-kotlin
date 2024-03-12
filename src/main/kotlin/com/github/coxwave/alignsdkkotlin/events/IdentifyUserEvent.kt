@@ -13,7 +13,8 @@ class IdentifyUserEvent(
     private val userIp: String? = null,
     private val userCountryCode: String? = null,
     private val userCreateTime: Instant? = null,
-): BaseEvent() {
+    private val customProperties: Map<String, String> = mapOf(),
+) : BaseEvent() {
     override var eventType = Constants.EVENT_IDENTIFY_USER
 
     init {
@@ -22,25 +23,40 @@ class IdentifyUserEvent(
         require(userDisplayName == null || userDisplayName.length <= 64) { "userDisplayName must be at most 64 characters" }
         require(userEmail == null || userEmail.length <= 256) { "userEmail must be at most 256 characters" }
         require(userCountryCode == null || userCountryCode.length == 2) { "userCountryCode must be ISO Alpha-2 code." }
+        require(customProperties.keys.size <= 10) { "customProperties must have at most 10 keys" }
+        customProperties.forEach { (key, value) ->
+            require(key.isNotBlank()) { "key of customProperty is required" }
+            require(Constants.CUSTOM_PROPERTY_KEY_PATTERN.matches(key)) { "key of customProperty must match ${Constants.CUSTOM_PROPERTY_KEY_PATTERN}" }
+            require(value.length <= 256) { "value of customProperty must be at most 256 characters" }
+        }
     }
 
     override fun asProtoEventBuilder(): Event.Builder {
-        val propsBuilder = EventProperties.UserProperties.newBuilder().setUserId(userId)
+        val userPropsBuilder = EventProperties.UserProperties.newBuilder().setUserId(userId)
         if (userDisplayName != null) {
-            propsBuilder.userDisplayName = userDisplayName
+            userPropsBuilder.userDisplayName = userDisplayName
         }
         if (userEmail != null) {
-            propsBuilder.userEmail = userEmail
+            userPropsBuilder.userEmail = userEmail
         }
         if (userCountryCode != null) {
-            propsBuilder.userLocation = EventProperties.UserProperties.Location.newBuilder().setCountryCode(userCountryCode).build()
+            userPropsBuilder.userLocation =
+                EventProperties.UserProperties.Location.newBuilder().setCountryCode(userCountryCode).build()
         }
         if (userCountryCode == null && userIp != null) {
-            propsBuilder.userIp = userIp
+            userPropsBuilder.userIp = userIp
         }
         if (userCreateTime != null) {
-            propsBuilder.userCreateTime = Timestamps.fromMillis(userCreateTime.toEpochMilli())
+            userPropsBuilder.userCreateTime = Timestamps.fromMillis(userCreateTime.toEpochMilli())
         }
-        return super.asProtoEventBuilder().setProperties(EventProperties.newBuilder().setUserProperties(propsBuilder))
+        val propsBuilder = EventProperties.newBuilder()
+            .setUserProperties(userPropsBuilder)
+        customProperties.forEach { (key, value) ->
+            propsBuilder.putCustomProperties(
+                key,
+                EventProperties.CustomPropertyValue.newBuilder().setStringValue(value).build()
+            )
+        }
+        return super.asProtoEventBuilder().setProperties(propsBuilder)
     }
 }
