@@ -31,7 +31,7 @@ dependencies {
     ...
 
     // SDK
-    implementation("com.github.coxwave:alignai-sdk-kotlin:0.2.0")
+    implementation("com.github.coxwave:alignai-sdk-kotlin:0.3.0")
 
     // SDK Dependencies
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
