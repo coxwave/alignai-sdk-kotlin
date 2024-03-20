@@ -31,15 +31,15 @@ dependencies {
     ...
 
     // SDK
-    implementation("com.github.coxwave:alignai-sdk-kotlin:0.1.2")
+    implementation("com.github.coxwave:alignai-sdk-kotlin:0.3.0")
 
     // SDK Dependencies
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.connectrpc:connect-kotlin-okhttp:0.4.0")
-    implementation("com.connectrpc:connect-kotlin-google-java-ext:0.4.0")
-    implementation("com.google.protobuf:protobuf-java:3.25.2")
-    implementation("build.buf.gen:impaction-ai_ingestion_connectrpc_kotlin:0.4.0.1.20230724010212.6e96e3f59731")
-    implementation("build.buf.gen:impaction-ai_ingestion_protocolbuffers_kotlin:25.2.0.1.20230724010212.6e96e3f59731")
+    implementation("com.connectrpc:connect-kotlin-okhttp:0.5.0")
+    implementation("com.connectrpc:connect-kotlin-google-java-ext:0.5.0")
+    implementation("com.google.protobuf:protobuf-kotlin:3.25.3")
+    implementation("build.buf.gen:impaction-ai_ingestion_connectrpc_kotlin:0.5.0.1.20240304081353.ab10776f8380")
+    implementation("build.buf.gen:impaction-ai_ingestion_protocolbuffers_kotlin:25.3.0.1.20240304081353.ab10776f8380")
 
     // Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

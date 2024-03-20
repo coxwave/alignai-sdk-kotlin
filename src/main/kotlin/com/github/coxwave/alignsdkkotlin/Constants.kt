@@ -8,4 +8,6 @@ object Constants {
     const val EVENT_OPEN_SESSION = "session_open"
     const val EVENT_CLOSE_SESSION = "session_close"
     const val EVENT_CREATE_MESSAGE = "message_create"
+
+    val CUSTOM_PROPERTY_KEY_PATTERN = """^[a-zA-Z][a-zA-Z0-9_]{0,63}$""".toRegex()
 }
