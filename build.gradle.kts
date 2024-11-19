@@ -19,9 +19,9 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("com.connectrpc:connect-kotlin-okhttp:0.6.0")
-    implementation("com.connectrpc:connect-kotlin-google-java-ext:0.6.0")
-    implementation("com.google.protobuf:protobuf-kotlin:3.25.3")
+    implementation("com.connectrpc:connect-kotlin-okhttp:0.7.1")
+    implementation("com.connectrpc:connect-kotlin-google-java-ext:0.7.1")
+    implementation("com.google.protobuf:protobuf-kotlin:4.28.3")
     implementation("build.buf.gen:impaction-ai_ingestion_connectrpc_kotlin:0.7.1.1.20240908234409.342910308823")
     implementation("build.buf.gen:impaction-ai_ingestion_protocolbuffers_kotlin:28.3.0.2.20240908234409.342910308823")
 }

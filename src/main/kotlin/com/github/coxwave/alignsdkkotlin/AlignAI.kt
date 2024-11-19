@@ -4,7 +4,6 @@ import com.github.coxwave.alignsdkkotlin.events.BaseEvent
 import build.buf.gen.ingestion.v1alpha.CollectEventsRequest
 import build.buf.gen.ingestion.v1alpha.IngestionServiceClient
 import com.connectrpc.ResponseMessage
-
 import com.connectrpc.ProtocolClientConfig
 import com.connectrpc.extensions.GoogleJavaProtobufStrategy
 import com.connectrpc.impl.ProtocolClient

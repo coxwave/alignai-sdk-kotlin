@@ -10,6 +10,5 @@ object Constants {
     const val EVENT_CREATE_MESSAGE = "message_create"
     const val EVENT_FEEDBACK_CREATE = "feedback_create"
 
-
     val CUSTOM_PROPERTY_KEY_PATTERN = """^[a-zA-Z][a-zA-Z0-9_]{0,63}$""".toRegex()
 }
