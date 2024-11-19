@@ -3,7 +3,7 @@ package com.github.coxwave.alignsdkkotlin
 import com.github.coxwave.alignsdkkotlin.events.BaseEvent
 import build.buf.gen.ingestion.v1alpha.CollectEventsRequest
 import build.buf.gen.ingestion.v1alpha.IngestionServiceClient
-import com.connectrpc.Code
+import com.connectrpc.ResponseMessage
 import com.connectrpc.ProtocolClientConfig
 import com.connectrpc.extensions.GoogleJavaProtobufStrategy
 import com.connectrpc.impl.ProtocolClient
@@ -39,10 +39,11 @@ class AlignAI(
                 "Authorization" to listOf("Bearer ${config.apiKey}")
             ),
         )
-        if (response.code == Code.OK) {
+
+        // Success handling
+        if (response is ResponseMessage.Success) {
             return
         }
-
         // Error handling
         val cause = response.failure{ error -> error.cause }
         throw APIException(cause!!)
